@@ -32,7 +32,7 @@ def decrypt(key,ciphertext):
             plaintext.append(plainLetter)
         elif letter in lowerCase:
             letterPosition = lowerCase.index(letter)
-            cipherPosition = (letterPosition + key) % 26
+            cipherPosition = (letterPosition - key) % 26
             plainLetter = lowerCase[cipherPosition]
             plaintext.append(plainLetter)
     return plaintext
