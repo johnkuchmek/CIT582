@@ -8,12 +8,12 @@ def encrypt(key,plaintext):
     for letter in plaintext:
         if letter in upperCase:
             letterPosition = upperCase.index(letter)
-            cipherPosition = (letterPosition + key) % 26
+            cipherPosition = (letterPosition + key + ceil(key/26) * 26) % 26
             cipherLetter = upperCase[cipherPosition]
             ciphertext.append(cipherLetter)
         elif letter in lowerCase:
             letterPosition = lowerCase.index(letter)
-            cipherPosition = (letterPosition + key) % 26
+            cipherPosition = (letterPosition + key + ceil(key/26) * 26) % 26
             cipherLetter = lowerCase[cipherPosition]
             ciphertext.append(cipherLetter)
     return ciphertext
@@ -27,12 +27,12 @@ def decrypt(key,ciphertext):
     for letter in ciphertext:
         if letter in upperCase:
             letterPosition = upperCase.index(letter)
-            cipherPosition = (letterPosition - key) % 26
+            cipherPosition = (letterPosition - key + ceil(key/26) * 26) % 26
             plainLetter = upperCase[cipherPosition]
             plaintext.append(plainLetter)
         elif letter in lowerCase:
             letterPosition = lowerCase.index(letter)
-            cipherPosition = (letterPosition - key) % 26
+            cipherPosition = (letterPosition - key + ceil(key/26) * 26) % 26
             plainLetter = lowerCase[cipherPosition]
             plaintext.append(plainLetter)
     return plaintext
