@@ -20,7 +20,7 @@ def hash_collision(k):
     
     isCollision = 0
     
-    while (isCollision = 0):
+    while (isCollision == 0):
         hashX = hashlib.sha256(x).digest()
         hashY = hashlib.sha256(y).digest()
         intX = int.from_bytes(hashX)
