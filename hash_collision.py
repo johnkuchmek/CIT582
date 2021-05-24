@@ -27,8 +27,8 @@ def hash_collision(k):
         #intY = int.from_bytes(hashY)
         #binX = bin(intX)
         #binY = bin(intY)
-		binX = hashX
-		binY = hashY
+        binX = hashX
+        binY = hashY
         if (binX[(len(binX)-k):] == binY[(len(binY)-k):]):
             isCollision = 1
         else:
