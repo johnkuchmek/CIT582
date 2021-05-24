@@ -27,7 +27,7 @@ def hash_collision(k):
 		intY = int.from_bytes(hashY)
 		binX = bin(intX)
 		binY = bin(intY)
-		if (binX[len(binX):] == binY[len(binY):]):
+		if (binX[(len(binX)-k):] == binY[(len(binY)-k):]):
 			isCollision = 1
 		else:
 			strY = ''.join(random.choice(letters) for i in range (256))
