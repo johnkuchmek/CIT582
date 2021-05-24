@@ -23,12 +23,10 @@ def hash_collision(k):
     while (isCollision == 0):
         hashX = hashlib.sha256(x).digest()
         hashY = hashlib.sha256(y).digest()
-        #intX = int.from_bytes(hashX)
-        #intY = int.from_bytes(hashY)
-        #binX = bin(intX)
-        #binY = bin(intY)
-        binX = hashX
-        binY = hashY
+        intX = int.from_bytes(hashX, byteorder=sys.byteorder)
+        intY = int.from_bytes(hashY, byteorder=sys.byteorder)
+        binX = bin(intX)
+        binY = bin(intY)
         if (binX[(len(binX)-k):] == binY[(len(binY)-k):]):
             isCollision = 1
         else:
