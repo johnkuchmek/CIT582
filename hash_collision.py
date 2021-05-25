@@ -13,18 +13,17 @@ def hash_collision(k):
    
     #Collision finding code goes here
     letters = string.ascii_letters
-    strX = ''.join(random.choice(letters) for i in range (256))
+    strX = ''.join(random.choice(letters) for i in range(256))
     x = strX.encode('utf-8')
-    strY = ''.join(random.choice(letters) for i in range (256))
+    strY = ''.join(random.choice(letters) for i in range(256))
     y = strY.encode('utf-8')
     
     isCollision = 0
-    
     while (isCollision == 0):
         hashX = hashlib.sha256(x).digest()
         hashY = hashlib.sha256(y).digest()
-        intX = int.from_bytes(hashX, byteorder=sys.byteorder)
-        intY = int.from_bytes(hashY, byteorder=sys.byteorder)
+        intX = int.from_bytes(hashX, 'big')
+        intY = int.from_bytes(hashY, 'big')
         binX = bin(intX)
         binY = bin(intY)
         if (binX[(len(binX)-k):] == binY[(len(binY)-k):]):
@@ -32,12 +31,6 @@ def hash_collision(k):
         else:
             strY = ''.join(random.choice(letters) for i in range (256))
             y = strY.encode('utf-8')
-    
+
     #x = b'\x00'
     #y = b'\x00'
-    
-    return( x, y )
-
-
-
-
