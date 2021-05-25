@@ -32,5 +32,6 @@ def hash_collision(k):
             strY = ''.join(random.choice(letters) for i in range (256))
             y = strY.encode('utf-8')
 
+    return (x, y)
     #x = b'\x00'
     #y = b'\x00'
