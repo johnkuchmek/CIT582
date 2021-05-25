@@ -1,5 +1,7 @@
 import hashlib
 import os
+import string
+import random
 
 def hash_preimage(target_string):
     if not all( [x in '01' for x in target_string ] ):
