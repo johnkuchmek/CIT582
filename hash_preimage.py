@@ -22,6 +22,6 @@ def hash_preimage(target_string):
             strX = ''.join(random.choice(letters) for i in range(256))
             x = strX.encode('utf-8')
 
-    nonce = intX
+    nonce = 0
 
     return( nonce )
