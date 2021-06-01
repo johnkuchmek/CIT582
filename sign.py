@@ -7,12 +7,13 @@ from hashlib import sha256
 def sign(m):
 	#generate public key
 	#Your code here
-	public_key = None
+        keypair = keys.gen_keypair(curve = secp256k1, hashfunc=sha256)
+	public_key = keypair[1]
+        private_key = keypair[0]
 
 	#generate signature
 	#Your code here
-	r = 0
-	s = 0
+        r,s = ecdsa.sign(msg = m, d = private_key, curve = secp256k1, hashfunc=sha256)
 
 	assert isinstance( public_key, point.Point )
 	assert isinstance( r, int )
