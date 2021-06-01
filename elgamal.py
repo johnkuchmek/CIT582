@@ -13,6 +13,7 @@ def keygen():
 
 def encrypt(pk,m):
     rand = random.seed(a=None, version = 2)
+    q = (p-1)/2
     r = random.randint(1,q)
     c1 = pow(g,r,p)
     c2 = pk * pow(m,1,p)
