@@ -7,7 +7,7 @@ from hashlib import sha256
 def sign(m):
 	#generate public key
 	#Your code here
-        keypair = keys.gen_keypair(curve = secp256k1, hashfunc=sha256)
+        keypair = keys.gen_keypair(curve = secp256k1)
         public_key = keypair[1]
         private_key = keypair[0]
 
