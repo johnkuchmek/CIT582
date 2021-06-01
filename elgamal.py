@@ -16,7 +16,7 @@ def encrypt(pk,m):
     q = (p-1)/2
     r = random.randint(1,q)
     c1 = pow(g,r,mod = p)
-    c2 = pk * pow(m,1,mod =p)
+    c2 = (pk ** r) * pow(m,1,mod =p)
     return [c1,c2]
 
 def decrypt(sk,c):
