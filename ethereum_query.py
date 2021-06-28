@@ -13,7 +13,7 @@ else:
     print( "Failed to connect to Ethereum node!" )
 
 def get_transaction(tx):
-    tx = w3.get_transaction(tx)   #YOUR CODE HERE
+    tx = w3.eth.get_transaction(tx)   #YOUR CODE HERE
     return tx
 
 # Return the gas price used by a particular transaction,
@@ -24,7 +24,7 @@ def get_gas_price(tx):
     return gas_price
 
 def get_gas(tx):
-    tx = w3.get_transaction_receipt(tx) #YOUR CODE HERE
+    tx = w3.eth.get_transaction_receipt(tx) #YOUR CODE HERE
     gas = tx['gasUsed']
     return gas
 
