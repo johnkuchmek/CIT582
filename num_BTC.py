@@ -8,7 +8,7 @@ def num_BTC(b):
         if currentBlock % 210000 == 0:
             c = c + currentReward
             currentBlock = currentBlock + 1
-			currentReward = currentReward / 2
+            currentReward = currentReward / 2
         else:
             c = c + currentReward
             currentBlock = currentBlock + 1
