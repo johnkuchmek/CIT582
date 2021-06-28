@@ -4,7 +4,7 @@ def num_BTC(b):
     currentBlock = 0
     currentReward = float(50)
     c = float(0)
-    while currentBlock != b
+    while currentBlock != b:
         if currentBlock % 210000 == 0:
             c = c + currentReward
             currentBlock = currentBlock + 1
