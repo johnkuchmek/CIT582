@@ -1,7 +1,7 @@
 import math
 
 def num_BTC(b):
-    currentBlock = 0
+    currentBlock = 1
     currentReward = float(50)
     c = float(0)
     while currentBlock != b:
