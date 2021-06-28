@@ -1,17 +1,17 @@
 import math
 
 def num_BTC(b):
-    blocksToCalculate = b
+    currentBlock = 0
     currentReward = float(50)
     c = float(0)
-    while blocksToCalculate != 0:
-        if blocksToCalculate % 210000 == 0:
-            currentReward = currentReward / 2
+    while currentBlock != b
+        if currentBlock % 210000 == 0:
             c = c + currentReward
-            blocksToCalculate = blocksToCalculate - 1
+            currentBlock = currentBlock + 1
+			currentReward = currentReward / 2
         else:
             c = c + currentReward
-            blocksToCalculate = blocksToCalculate - 1
+            currentBlock = currentBlock + 1
     return c
 
 
