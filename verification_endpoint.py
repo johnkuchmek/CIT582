@@ -42,7 +42,6 @@ def verify():
             # result = False
 
     #Check if signature is valid
-    result = True #Should only be true if signature validates
     return jsonify(result)
 
 if __name__ == '__main__':
