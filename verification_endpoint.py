@@ -30,16 +30,16 @@ def verify():
         else:
             result = False
         
-    # elif content['payload']['platform'] = "Algorand":
-        # payload = content['payload']
+    elif content['payload']['platform'] == "Algorand":
+        payload = content['payload']
         
-        # algo_sk, algo_pk = algosdk.account.generate_account()
-        # algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
+        algo_sk, algo_pk = algosdk.account.generate_account()
+        algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
 
-        # if algosdk.util.verify_bytes(payload.encode('utf-8'),algo_sig_str,content['payload']['pk']):
-            # result = True
-        # else:
-            # result = False
+        if algosdk.util.verify_bytes(payload.encode('utf-8'),algo_sig_str,content['payload']['pk']):
+            result = True
+        else:
+            result = False
 
     #Check if signature is valid
     result = True #Should only be true if signature validates
