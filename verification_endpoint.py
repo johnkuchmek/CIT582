@@ -14,7 +14,7 @@ def verify():
     #content_dict = json.loads(content)
     #Check if signature is valid
     
-    if content['payload']['platform'] = "Ethereum":
+    if content['payload']['platform'] == "Ethereum":
         eth_account.Account.enable_unaudited_hdwallet_features()
         acct, mnemonic = eth_account.Account.create_with_mnemonic()
         
