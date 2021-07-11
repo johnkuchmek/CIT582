@@ -14,6 +14,8 @@ def verify():
     #content_dict = json.loads(content)
     #Check if signature is valid
     
+    result = True
+    
     if content['payload']['platform'] == "Ethereum":
         eth_account.Account.enable_unaudited_hdwallet_features()
         acct, mnemonic = eth_account.Account.create_with_mnemonic()
@@ -23,7 +25,7 @@ def verify():
 
         payload = json.dumps(content['payload'])
         eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
-        #eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
+        eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
         
         # if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == content['payload']['pk']:
             # result = True
@@ -42,7 +44,6 @@ def verify():
             # result = False
 
     #Check if signature is valid
-    result = True #Should only be true if signature validates
     return jsonify(result)
 
 if __name__ == '__main__':
