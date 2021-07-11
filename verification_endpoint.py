@@ -23,14 +23,14 @@ def verify():
         eth_pk = acct.address
         eth_sk = acct.key
 
-        payload = json.dumps(content['payload'])
+        payload = content['payload']
         eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
-        eth_sig_obj = json.dumps(content['sig'])
+        # eth_sig_obj = json.dumps(content['sig'])
         
-        if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
-            result = True
-        else:
-            result = False
+        # if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
+            # result = True
+        # else:
+            # result = False
         
     elif content['payload']['platform'] == "Algorand":
         payload = json.dumps(content['payload'])
