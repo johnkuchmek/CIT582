@@ -33,7 +33,7 @@ def verify():
             # result = False
         
     if content['payload']['platform'] == "Algorand":
-        payload = content['payload']
+        payload = json.dumps(content['payload'])
         
         algo_sk, algo_pk = algosdk.account.generate_account()
         algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
