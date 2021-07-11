@@ -13,32 +13,32 @@ def verify():
     content = request.get_json(silent=True)
     #Check if signature is valid
     
-    if content['payload']['platform'] = "Ethereum":
-        eth_account.Account.enable_unaudited_hdwallet_features()
-        acct, mnemonic = eth_account.Account.create_with_mnemonic()
+    # if content['payload']['platform'] = "Ethereum":
+        # eth_account.Account.enable_unaudited_hdwallet_features()
+        # acct, mnemonic = eth_account.Account.create_with_mnemonic()
         
-        eth_pk = acct.address
-        eth_sk = acct.key
+        # eth_pk = acct.address
+        # eth_sk = acct.key
 
-        payload = content['payload']
-        eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
-        eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
+        # payload = content['payload']
+        # eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
+        # eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
         
-        if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == content['payload']['pk']:
-            result = True
-        else:
-            result = False
+        # if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == content['payload']['pk']:
+            # result = True
+        # else:
+            # result = False
         
-    elif content['payload']['platform'] = "Algorand":
-        payload = content['payload']
+    # elif content['payload']['platform'] = "Algorand":
+        # payload = content['payload']
         
-        algo_sk, algo_pk = algosdk.account.generate_account()
-        algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
+        # algo_sk, algo_pk = algosdk.account.generate_account()
+        # algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
 
-        if algosdk.util.verify_bytes(payload.encode('utf-8'),algo_sig_str,content['payload']['pk']):
-            result = True
-        else:
-            result = False
+        # if algosdk.util.verify_bytes(payload.encode('utf-8'),algo_sig_str,content['payload']['pk']):
+            # result = True
+        # else:
+            # result = False
 
     #Check if signature is valid
     result = True #Should only be true if signature validates
