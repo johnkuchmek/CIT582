@@ -14,14 +14,14 @@ def verify():
     dictContent = json.loads(content)
     #Check if signature is valid
     
-    if dictContent['Payload']['platform'] = "Ethereum":
+    if dictContent['payload']['platform'] = "Ethereum":
         eth_account.Account.enable_unaudited_hdwallet_features()
         acct, mnemonic = eth_account.Account.create_with_mnemonic()
         
         eth_pk = acct.address
         eth_sk = acct.key
 
-        payload = dictContent['Signature']
+        payload = dictContent['sig']
         eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
         eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
         
@@ -30,8 +30,8 @@ def verify():
 		else:
 			result = False
         
-    elif dictContent['Payload']['platform'] = "Algorand":
-        payload = dictContent['Signature']
+    elif dictContent['payload']['platform'] = "Algorand":
+        payload = dictContent['sig']
         
         algo_sk, algo_pk = algosdk.account.generate_account()
         algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
