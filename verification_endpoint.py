@@ -42,7 +42,7 @@ def verify():
 			# result = False
 
     # else:
-        result = False #Should only be true if signature validates
+    result = False #Should only be true if signature validates
     
     return jsonify(result)
 
