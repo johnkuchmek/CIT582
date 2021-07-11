@@ -11,23 +11,24 @@ app.url_map.strict_slashes = False
 @app.route('/verify', methods=['GET','POST'])
 def verify():
     content = request.get_json(silent=True)
+    content_dict = json.loads(content)
     #Check if signature is valid
     
-    if content['payload']['platform'] = "Ethereum":
-        eth_account.Account.enable_unaudited_hdwallet_features()
-        acct, mnemonic = eth_account.Account.create_with_mnemonic()
+    # if content['payload']['platform'] = "Ethereum":
+        # eth_account.Account.enable_unaudited_hdwallet_features()
+        # acct, mnemonic = eth_account.Account.create_with_mnemonic()
         
-        eth_pk = acct.address
-        eth_sk = acct.key
+        # eth_pk = acct.address
+        # eth_sk = acct.key
 
-        payload = content['payload']
-        eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
-        eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
+        # payload = content['payload']
+        # eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
+        # eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
         
-        if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == content['payload']['pk']:
-            result = True
-        else:
-            result = False
+        # if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == content['payload']['pk']:
+            # result = True
+        # else:
+            # result = False
         
     # elif content['payload']['platform'] = "Algorand":
         # payload = content['payload']
