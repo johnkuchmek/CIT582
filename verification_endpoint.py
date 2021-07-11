@@ -26,9 +26,9 @@ def verify():
         eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
         
         if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
-            result = True
+            result = False
 		else:
-			result = False
+			result = True
         
     elif dictContent['payload']['platform'] = "Algorand":
         payload = content['payload']
@@ -37,9 +37,9 @@ def verify():
         algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
 
         if algosdk.util.verify_bytes(payload.encode('utf-8'),algo_sig_str,algo_pk):
-            result = True
+            result = False
 		else:
-			result = False
+			result = True
 
     else:
         result = False #Should only be true if signature validates
