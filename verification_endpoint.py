@@ -40,11 +40,6 @@ def verify():
         else:
             result = False
 
-    # else:
-    result = True #Should only be true if signature validates
-    
-    return jsonify(result)
-
     #Check if signature is valid
     result = True #Should only be true if signature validates
     return jsonify(result)
