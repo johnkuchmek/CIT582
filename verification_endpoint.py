@@ -10,12 +10,12 @@ app.url_map.strict_slashes = False
 
 @app.route('/verify', methods=['GET','POST'])
 def verify():
-    content = request.get_json(silent=True)
+	content = request.get_json(silent=True)
 	dictContent = json.loads(content)
 
-    #Check if signature is valid
-    result = True #Should only be true if signature validates
-    return jsonify(result)
+	#Check if signature is valid
+	result = True #Should only be true if signature validates
+	return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(port='5002')
+	app.run(port='5002')
