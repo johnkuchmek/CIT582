@@ -16,23 +16,22 @@ def verify():
     
     result = False
     
-    # if content['payload']['platform'] == "Ethereum":
-        # eth_account.Account.enable_unaudited_hdwallet_features()
-        # acct, mnemonic = eth_account.Account.create_with_mnemonic()
+    if content['payload']['platform'] == "Ethereum":
+        eth_account.Account.enable_unaudited_hdwallet_features()
+        acct, mnemonic = eth_account.Account.create_with_mnemonic()
         
-        # eth_pk = acct.address
-        # eth_sk = acct.key
+        eth_pk = acct.address
+        eth_sk = acct.key
 
-        # payload = json.dumps(content['payload'])
-        # eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
-        # eth_sig_obj = content['sig']
+        payload = json.dumps(content['payload'])
+        eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
         
-        # if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == content['payload']['pk']:
-            # result = True
-        # else:
-            # result = False
+        if eth_account.Account.recover_message(eth_encoded_msg,signature=content['sig'].signature.hex()) == content['payload']['pk']:
+            result = True
+        else:
+            result = False
         
-    if content['payload']['platform'] == "Algorand":
+    elif content['payload']['platform'] == "Algorand":
         payload = json.dumps(content['payload'])
         
         algo_sk, algo_pk = algosdk.account.generate_account()
