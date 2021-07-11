@@ -21,7 +21,7 @@ def verify():
         eth_pk = acct.address
         eth_sk = acct.key
 
-        payload = dictContent['sig']
+        payload = dictContent['payload']
         eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
         eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
         
@@ -31,7 +31,7 @@ def verify():
 			result = False
         
     elif dictContent['payload']['platform'] = "Algorand":
-        payload = dictContent['sig']
+        payload = dictContent['payload']
         
         algo_sk, algo_pk = algosdk.account.generate_account()
         algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
