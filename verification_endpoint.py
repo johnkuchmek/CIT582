@@ -28,10 +28,10 @@ def verify():
         eth_sig_obj = content
         pk = eth_account.Account.recover_message(eth_encoded_msg,signature=content['sig'])
 		
-        # if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
-            # result = True
-        # else:
-            # result = False
+        if pk == content['payload']['pk']:
+            result = True
+        else:
+            result = False
         
     elif content['payload']['platform'] == "Algorand":
         payload = json.dumps(content['payload'])
