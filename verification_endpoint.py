@@ -26,8 +26,7 @@ def verify():
         payload = json.dumps(content['payload'])
         eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
         eth_sig_obj = content['sig']
-		print(type(eth_sig_obj))
-        #pk = eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex())
+        pk = eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.hex())
 		
         # if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
             # result = True
