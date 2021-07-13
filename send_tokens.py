@@ -24,6 +24,9 @@ def send_tokens( receiver_pk, tx_amount ):
     last_valid_round = params.last
 
     #Your code here
+	payment = PaymentTxn (sender_pk, tx_fee, first_valid_round, last_valid_round, gen_hash, receiver_pk, tx_amount, None)
+	signed_payment = payment.sign(sk)
+	txid = signed_payment.send_transaction()
 
     return sender_pk, txid
 
