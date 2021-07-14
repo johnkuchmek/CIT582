@@ -16,6 +16,11 @@ headers = {
 acl = algod.AlgodClient(algod_token, algod_address, headers)
 min_balance = 100000 #https://developer.algorand.org/docs/features/accounts/#minimum-balance
 
+sk = McDQrBozic8C22ioTq+is9fbYviCWeVyPEKpKMY7sJjV7cyXwpNTvCdE2sNDRnzuIeKb0tYQm+CHoQDn1ahkwQ==
+pk = 2XW4ZF6CSNJ3YJ2E3LBUGRT45YQ6FG6S2YIJXYEHUEAOPVNIMTAVH7Y3ZE
+
+sender_pk = pk
+
 def send_tokens( receiver_pk, tx_amount ):
     params = acl.suggested_params()
     gen_hash = params.gh
