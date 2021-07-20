@@ -37,12 +37,12 @@ def process_order(order):
             filter(Order.sell_currency == orderToMatch['buy_currency']).\
             filter((Order.sell_amount / Order.buy_amount) >= (orderToMatch['buy_amount'] / orderToMatch['sell_amount'])):
       
-            if orderMatched == False
+            if orderMatched == False:
                 orderToMatch['timestamp'] = datetime.now()
                 possibleOrder['timestamp'] = datetime.now()
                 orderToMatch['counterparty_id'] = possibleOrder['id']
                 possibleOrder['counterparty_id'] = orderToMatch['id']
-                if orderToMatch['buy_amount'] > possibleOrder['sell_amount'] or orderToMatch['sell_amount'] > possibleOrder['buy_amount']
+                if orderToMatch['buy_amount'] > possibleOrder['sell_amount'] or orderToMatch['sell_amount'] > possibleOrder['buy_amount']:
                     newOrder['sender_pk'] = orderToMatch['sender_pk']
                     newOrder['receiver_pk'] = orderToMatch['receiver_pk']
                     newOrder['buy_currency'] = orderToMatch['buy_currency']
@@ -50,7 +50,7 @@ def process_order(order):
                     newOrder['buy_amount'] = orderToMatch['buy_amount'] - possibleOrder['sell_amount']
                     newOrder['sell_amount'] = orderToMatch['sell_amount'] - possibleOrder['buy_amount']
                     newOrder['creator_id'] = orderToMatch['id']
-                elif orderToMatch['buy_amount'] < possibleOrder['sell_amount'] or orderToMatch['sell_amount'] < possibleOrder['buy_amount']
+                elif orderToMatch['buy_amount'] < possibleOrder['sell_amount'] or orderToMatch['sell_amount'] < possibleOrder['buy_amount']:
                     newOrder['sender_pk'] = possibleOrder['sender_pk']
                     newOrder['receiver_pk'] = possibleOrder['receiver_pk']
                     newOrder['buy_currency'] = possibleOrder['buy_currency']
