@@ -31,9 +31,8 @@ def process_order(order):
     #Second, Match the following criteria
     for orderToMatch in session.query(Order):
         orderMatched = False
-        possibleOrder = session.query(Order).\
-            filter(Order.filled == None, Order.buy_currency == orderToMatch.sell_currency, Order.sell_currency == orderToMatch.buy_currency,\
-            (Order.sell_amount / Order.buy_amount) >= (orderToMatch.buy_amount / orderToMatch.sell_amount)).first():
+        possibleOrder = session.query(Order).filter(Order.filled == None, Order.buy_currency == orderToMatch.sell_currency, Order.sell_currency == orderToMatch.buy_currency,\
+            (Order.sell_amount / Order.buy_amount) >= (orderToMatch.buy_amount / orderToMatch.sell_amount)).first()
       
             if orderMatched == False:
                 orderToMatch.timestamp = datetime.now()
