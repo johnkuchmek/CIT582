@@ -18,7 +18,6 @@ def process_order(order):
         newOrder['sell_currency'] = order['sell_currency']
         newOrder['buy_amount'] = order['buy_amount']
         newOrder['sell_amount'] = order['sell_amount']
-        newOrder['counterparty_id'] = ['0']
       
         fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
         order_obj = Order(**{f:newOrder[f] for f in fields})
@@ -39,6 +38,8 @@ def process_order(order):
             possibleOrder.filled = datetime.now()
             orderToMatch.counterparty_id = possibleOrder.id
             possibleOrder.counterparty_id = orderToMatch.id
+			session.commit()
+			
             if orderToMatch.buy_amount > possibleOrder.sell_amount or orderToMatch.sell_amount > possibleOrder.buy_amount:
                 newOrder = {}
                 newOrder['sender_pk'] = orderToMatch.sender_pk
