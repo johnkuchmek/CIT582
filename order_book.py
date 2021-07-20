@@ -35,8 +35,10 @@ def process_order(order):
         
         if possibleOrder != None:
             orderToMatch.filled = datetime.now()
-            possibleOrder.filled = datetime.now()
             orderToMatch.counterparty_id = possibleOrder.id
+            session.commit()
+            
+            possibleOrder.filled = datetime.now()
             possibleOrder.counterparty_id = orderToMatch.id
             session.commit()
             
