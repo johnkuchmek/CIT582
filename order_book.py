@@ -54,10 +54,9 @@ def process_order(order):
                 elif orderToMatch.sell_amount > possibleOrder.buy_amount:
                     newOrder['sell_amount'] = orderToMatch.sell_amount - possibleOrder.buy_amount
                     newOrder['buy_amount'] = orderToMatch.buy_amount / orderToMatch.sell_amount * newOrder['sell_amount']
-                newOrder['sell_amount'] = orderToMatch.sell_amount - possibleOrder.buy_amount
                 newOrder['creator_id'] = orderToMatch.id
                 
-                fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
+                fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount','creator_id']
                 order_obj = Order(**{f:newOrder[f] for f in fields})
                 session.add(order_obj)
                 session.commit()
@@ -74,11 +73,9 @@ def process_order(order):
                 elif possibleOrder.buy_amount > orderToMatch.sell_amount:
                     newOrder['buy_amount'] = possibleOrder.buy_amount - possibleOrder.sell_amount
                     newOrder['sell_amount'] = possibleOrder.sell_amount / possibleOrder.buy_amount * newOrder['buy_amount']
-                newOrder['buy_amount'] = possibleOrder.buy_amount - orderToMatch.sell_amount
-                newOrder['sell_amount'] = possibleOrder.sell_amount - orderToMatch.buy_amount
                 newOrder['creator_id'] = possibleOrder.id
                 
-                fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
+                fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount', 'creator_id']
                 order_obj = Order(**{f:newOrder[f] for f in fields})
                 session.add(order_obj)
                 session.commit()
