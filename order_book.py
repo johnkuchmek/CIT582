@@ -18,7 +18,7 @@ def process_order(order):
         newOrder['sell_currency'] = order['sell_currency']
         newOrder['buy_amount'] = order['buy_amount']
         newOrder['sell_amount'] = order['sell_amount']
-		newOrder['counterparty_id'] = None
+        newOrder['counterparty_id'] = None
       
         fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
         order_obj = Order(**{f:newOrder[f] for f in fields})
