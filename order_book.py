@@ -51,7 +51,7 @@ def process_order(order):
                 if orderToMatch.buy_amount > possibleOrder.sell_amount:
                     newOrder['buy_amount'] = orderToMatch.buy_amount - possibleOrder.sell_amount
                     newOrder['sell_amount'] = orderToMatch.sell_amount / orderToMatch.buy_amount * newOrder['buy_amount']
-                else if orderToMatch.sell_amount > possibleOrder.buy_amount:
+                elif orderToMatch.sell_amount > possibleOrder.buy_amount:
                     newOrder['sell_amount'] = orderToMatch.sell_amount - possibleOrder.buy_amount
                     newOrder['buy_amount'] = orderToMatch.buy_amount / orderToMatch.sell_amount * newOrder['sell_amount']
                 newOrder['sell_amount'] = orderToMatch.sell_amount - possibleOrder.buy_amount
@@ -71,7 +71,7 @@ def process_order(order):
                 if possibleOrder.sell_amount > orderToMatch.buy_amount:
                     newOrder['sell_amount'] = possibleOrder.sell_amount - possibleOrder.buy_amount
                     newOrder['buy_amount'] = possibleOrder.buy_amount / possibleOrder.sell_amount * newOrder['sell_amount']
-                else if possibleOrder.buy_amount > orderToMatch.sell_amount:
+                elif possibleOrder.buy_amount > orderToMatch.sell_amount:
                     newOrder['buy_amount'] = possibleOrder.buy_amount - possibleOrder.sell_amount
                     newOrder['sell_amount'] = possibleOrder.sell_amount / possibleOrder.buy_amount * newOrder['buy_amount']
                 newOrder['buy_amount'] = possibleOrder.buy_amount - orderToMatch.sell_amount
