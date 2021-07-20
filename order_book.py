@@ -33,7 +33,7 @@ def process_order(order):
         possibleOrder = session.query(Order).filter(Order.filled == None, Order.buy_currency == orderToMatch.sell_currency, Order.sell_currency == orderToMatch.buy_currency,\
         (Order.sell_amount / Order.buy_amount) >= (orderToMatch.buy_amount / orderToMatch.sell_amount)).first()
         
-        if possibleOrder != None:
+        if possibleOrder != None and orderToMatch.filled == None:
             orderToMatch.filled = datetime.now()
             orderToMatch.counterparty_id = possibleOrder.id
             session.commit()
