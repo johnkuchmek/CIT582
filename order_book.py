@@ -37,7 +37,7 @@ def process_order(order):
             filter(Order.sell_currency == orderToMatch['buy_currency']).\
             filter((Order.sell_amount / Order.buy_amount) >= (orderToMatch['buy_amount'] / orderToMatch['sell_amount'])):
       
-            if orderMatched = False
+            if orderMatched == False
                 orderToMatch['timestamp'] = datetime.now()
                 possibleOrder['timestamp'] = datetime.now()
                 orderToMatch['counterparty_id'] = possibleOrder['id']
