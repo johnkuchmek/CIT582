@@ -60,8 +60,8 @@ def process_order(order):
             
             fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
             order_obj = Order(**{f:newOrder[f] for f in fields})
-			
-			session.add
+            
+            session.add
             session.add(order_obj)
             session.commit()
     
