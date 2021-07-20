@@ -38,8 +38,8 @@ def process_order(order):
             possibleOrder.filled = datetime.now()
             orderToMatch.counterparty_id = possibleOrder.id
             possibleOrder.counterparty_id = orderToMatch.id
-			session.commit()
-			
+            session.commit()
+            
             if orderToMatch.buy_amount > possibleOrder.sell_amount or orderToMatch.sell_amount > possibleOrder.buy_amount:
                 newOrder = {}
                 newOrder['sender_pk'] = orderToMatch.sender_pk
