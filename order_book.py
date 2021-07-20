@@ -32,10 +32,8 @@ def process_order(order):
     for orderToMatch in session.query(Order):
         orderMatched = False
         for possibleOrder in session.query(Order).\
-            filter(Order.filled == None).\
-            filter(Order.buy_currency == orderToMatch['sell_currency']).\
-            filter(Order.sell_currency == orderToMatch['buy_currency']).\
-            filter((Order.sell_amount / Order.buy_amount) >= (orderToMatch['buy_amount'] / orderToMatch['sell_amount'])):
+            filter(Order.filled == None, Order.buy_currency == orderToMatch['sell_currency'], Order.sell_currency == orderToMatch['buy_currency'],\
+            (Order.sell_amount / Order.buy_amount) >= (orderToMatch['buy_amount'] / orderToMatch['sell_amount'])):
       
             if orderMatched == False:
                 orderToMatch['timestamp'] = datetime.now()
