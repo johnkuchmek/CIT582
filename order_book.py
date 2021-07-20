@@ -56,6 +56,11 @@ def process_order(order):
                     newOrder['buy_amount'] = orderToMatch.buy_amount / orderToMatch.sell_amount * newOrder['sell_amount']
                 newOrder['sell_amount'] = orderToMatch.sell_amount - possibleOrder.buy_amount
                 newOrder['creator_id'] = orderToMatch.id
+                
+                fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
+                order_obj = Order(**{f:newOrder[f] for f in fields})
+                session.add(order_obj)
+                session.commit()
 
             if orderToMatch.buy_amount < possibleOrder.sell_amount or orderToMatch.sell_amount < possibleOrder.buy_amount:
                 newOrder = {}
@@ -72,14 +77,12 @@ def process_order(order):
                 newOrder['buy_amount'] = possibleOrder.buy_amount - orderToMatch.sell_amount
                 newOrder['sell_amount'] = possibleOrder.sell_amount - orderToMatch.buy_amount
                 newOrder['creator_id'] = possibleOrder.id
+                
+                fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
+                order_obj = Order(**{f:newOrder[f] for f in fields})
+                session.add(order_obj)
+                session.commit()
 
-            
-            fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
-            order_obj = Order(**{f:newOrder[f] for f in fields})
-            
-            session.add
-            session.add(order_obj)
-            session.commit()
     
     pass
   
