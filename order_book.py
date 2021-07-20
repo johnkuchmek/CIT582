@@ -61,10 +61,9 @@ def process_order(order):
                 order_obj = Order(**{f:order[f] for f in fields})
 
                 session.add(order_obj)
-                session.commit()
                 
                 orderMatched = True  
-                
+		session.commit()
     
     pass
   
