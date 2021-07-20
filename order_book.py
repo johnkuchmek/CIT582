@@ -46,7 +46,7 @@ def process_order(order):
                 newOrder['buy_amount'] = orderToMatch.buy_amount - possibleOrder.sell_amount
                 newOrder['sell_amount'] = orderToMatch.sell_amount - possibleOrder.buy_amount
                 newOrder['creator_id'] = orderToMatch.id
-            elif orderToMatch.buy_amount < possibleOrder.sell_amount or orderToMatch.sell_amount < possibleOrder.buy_amount:
+            if orderToMatch.buy_amount < possibleOrder.sell_amount or orderToMatch.sell_amount < possibleOrder.buy_amount:
                 newOrder['sender_pk'] = possibleOrder.sender_pk
                 newOrder['receiver_pk'] = possibleOrder.receiver_pk
                 newOrder['buy_currency'] = possibleOrder.buy_currency
