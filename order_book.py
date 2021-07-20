@@ -39,6 +39,7 @@ def process_order(order):
             orderToMatch.counterparty_id = possibleOrder.id
             possibleOrder.counterparty_id = orderToMatch.id
             if orderToMatch.buy_amount > possibleOrder.sell_amount or orderToMatch.sell_amount > possibleOrder.buy_amount:
+				newOrder = {}
                 newOrder['sender_pk'] = orderToMatch.sender_pk
                 newOrder['receiver_pk'] = orderToMatch.receiver_pk
                 newOrder['buy_currency'] = orderToMatch.buy_currency
@@ -47,6 +48,7 @@ def process_order(order):
                 newOrder['sell_amount'] = max(orderToMatch.sell_amount - possibleOrder.buy_amount,0)
                 newOrder['creator_id'] = orderToMatch.id
             if orderToMatch.buy_amount < possibleOrder.sell_amount or orderToMatch.sell_amount < possibleOrder.buy_amount:
+				newOrder = {}
                 newOrder['sender_pk'] = possibleOrder.sender_pk
                 newOrder['receiver_pk'] = possibleOrder.receiver_pk
                 newOrder['buy_currency'] = possibleOrder.buy_currency
