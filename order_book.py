@@ -20,7 +20,7 @@ def process_order(order):
         newOrder['sell_amount'] = order['sell_amount']
       
         fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
-        order_obj = Order(**{f:order[f] for f in fields})
+        order_obj = Order(**{f:newOrder[f] for f in fields})
 
         session.add(order_obj)
         session.commit()
@@ -56,7 +56,7 @@ def process_order(order):
                 newOrder['creator_id'] = possibleOrder.id
             
             fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
-            order_obj = Order(**{f:order[f] for f in fields})
+            order_obj = Order(**{f:newOrder[f] for f in fields})
 
             session.add(order_obj)
             session.commit()
