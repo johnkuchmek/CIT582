@@ -37,7 +37,7 @@ def process_order(order):
         if possibleOrder != None:
             orderToMatch.filled = datetime.now()
             possibleOrder.filled = datetime.now()
-            orderToMatch.counterparty_id = possibleOrder.id)
+            orderToMatch.counterparty_id = possibleOrder.id
             possibleOrder.counterparty_id = orderToMatch.id
             if orderToMatch.buy_amount > possibleOrder.sell_amount or orderToMatch.sell_amount > possibleOrder.buy_amount:
                 newOrder = {}
