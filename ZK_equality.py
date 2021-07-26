@@ -9,9 +9,9 @@ def ZK_equality(G,H):
     m = utils.get_random_num(bits=32)
 
     C1 = (r1 * G)
-    C2 = (r1 * H) + (m * G)
+    C2 = r1 * H + m * G
     D1 = (r2 * G)
-    D2 = (r2 * H + m * G)
+    D2 = r2 * H + m * G
 
     #Generate a NIZK proving equality of the plaintexts
     print("trying to state stuff")
