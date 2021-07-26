@@ -4,9 +4,9 @@ from zksk import utils
 def ZK_equality(G,H):
 
     #Generate two El-Gamal ciphertexts (C1,C2) and (D1,D2)
-    r1 = Secret(utils.get_random_num(bits=64))
-    r2 = Secret(utils.get_random_num(bits=64))
-    m = utils.get_random_num(bits=64)
+    r1 = Secret(utils.get_random_num(bits=32))
+    r2 = Secret(utils.get_random_num(bits=32))
+    m = utils.get_random_num(bits=32)
 
     C1 = (r1 * G)
     print(C1)
