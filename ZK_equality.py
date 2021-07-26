@@ -15,6 +15,8 @@ def ZK_equality(G,H):
 
     #Generate a NIZK proving equality of the plaintexts
     stmt = DLRep(C1,r1*G) & DLRep(C2,r1*H+m*G) & DLRep(D1,r2*G) & DLRep(D2,r2*H+m*G)
+    print("I am here")
+
     zk_proof = stmt.prove()
 
 
