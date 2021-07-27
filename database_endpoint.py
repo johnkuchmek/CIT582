@@ -124,8 +124,10 @@ def order_book():
     #Your code here
     #Note that you can access the database session using g.session
     data = g.session.query(Order)
-    result = [d.__dict__ for d in data]
-    return jsonify(result=result)
+    result = {}
+    for d in data:
+        result.update(d.__dict__)
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(port='5002')
