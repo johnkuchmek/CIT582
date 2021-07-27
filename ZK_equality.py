@@ -1,5 +1,6 @@
 from zksk import Secret, DLRep
 from zksk import utils
+from zksk import composition
 
 def ZK_equality(G,H):
 
@@ -24,7 +25,7 @@ def ZK_equality(G,H):
     stmt2 = DLRep(C2,r1_Prime*H+m_Prime*G)
     stmt3 = DLRep(D1,r2*G)
     stmt4 = DLRep(D2,r2_Prime*H+m_Prime*G)
-    stmt = AndProofStmt(stmt1,stmt2,stmt3,stmt4)
+    stmt = composition.AndProofStmt(stmt1,stmt2,stmt3,stmt4)
     zk_proof = stmt.prove()
 
     #& DLRep(C2,r1_Prime*H+m*G) & DLRep(D1,r2*G) & DLRep(D2,r2_Prime*H+m*G)
