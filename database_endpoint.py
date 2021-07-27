@@ -126,7 +126,8 @@ def order_book():
     data = g.session.query(Order)
     result = {}
     for d in data:
-        result.update(d.__dict__)
+        d_as_dict = dict(d)
+        result.update(d_as_dict)
     return jsonify(result)
 
 if __name__ == '__main__':
