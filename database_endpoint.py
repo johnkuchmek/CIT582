@@ -49,7 +49,7 @@ def verify(content):
         eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
         eth_sig_obj = content
         pk = eth_account.Account.recover_message(eth_encoded_msg,signature=content['sig'])
-		
+        
         if pk == content['payload']['pk']:
             result = True
         else:
@@ -123,7 +123,7 @@ def order_book():
     #Your code here
     #Note that you can access the database session using g.session
     data = g.session.query.all()
-	result = [d.__dict__ for d in data]
+    result = [d.__dict__ for d in data]
     return jsonify(result=result)
 
 if __name__ == '__main__':
