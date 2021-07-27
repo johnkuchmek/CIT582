@@ -124,10 +124,9 @@ def order_book():
     #Your code here
     #Note that you can access the database session using g.session
     data = g.session.query(Order)
-    result = {}
+    result = []
     for d in data:
-        d_as_dict = dict(d)
-        result.update(d_as_dict)
+        result.append(d)
     return jsonify(result)
 
 if __name__ == '__main__':
