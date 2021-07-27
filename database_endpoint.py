@@ -102,15 +102,15 @@ def trade():
         #Note that you can access the database session using g.session
         if verify(content) == True:
             #Insert the order
-            order = Order( sender_pk=content['payload']['sender_pk'], \
+            order_obj = Order( sender_pk=content['payload']['sender_pk'], \
                 receiver_pk=content['payload']['receiver_pk'], \
                 buy_currency=content['payload']['buy_currency'], \
                 sell_currency=content['payload']['sell_currency'], \
                 buy_amount=content['payload']['buy_amount'], \
                 sell_amount=content['payload']['sell_amount'], \
                 signature=content['sig'])
-            fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount','signature']
-            order_obj = Order(**{f:order[f] for f in fields})
+            #fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount','signature']
+            #order_obj = Order(**{f:order[f] for f in fields})
             
             session.add(order_obj)
             session.commit()
