@@ -117,7 +117,7 @@ def trade():
         else:
             content = json.dumps(content)
             log_message(content)
-	return
+    return
 
 @app.route('/order_book')
 def order_book():
