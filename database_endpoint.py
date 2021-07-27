@@ -112,8 +112,8 @@ def trade():
             #fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount','signature']
             #order_obj = Order(**{f:order[f] for f in fields})
             
-            session.add(order_obj)
-            session.commit()
+            g.session.add(order_obj)
+            g.session.commit()
         else:
             content = json.dumps(content)
             log_message(content)
