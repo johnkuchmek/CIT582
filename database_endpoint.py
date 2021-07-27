@@ -122,8 +122,9 @@ def trade():
 def order_book():
     #Your code here
     #Note that you can access the database session using g.session
-    result = g.session.query.all()
-    return json.dumps(g.session.serialize_list(result))
+    data = g.session.query.all()
+	result = [d.__dict__ for d in data]
+    return jsonify(result=result)
 
 if __name__ == '__main__':
     app.run(port='5002')
