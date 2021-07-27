@@ -12,7 +12,7 @@ def ZK_equality(G,H):
     r1_Prime = Secret(R1)
     r2 = Secret(R2)
     r2_Prime = Secret(R2)
-	m_Prime = Secret(m)
+    m_Prime = Secret(m)
     
     C1 = R1 * G
     C2 = R1 * H + m * G
