@@ -124,7 +124,7 @@ def order_book():
     #Your code here
     #Note that you can access the database session using g.session
     result = g.session.query(Order).all()
-	result = [r for r, in result]
+    result = [r for r, in result]
     return jsonify(result)
 
 if __name__ == '__main__':
