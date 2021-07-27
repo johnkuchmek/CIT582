@@ -67,7 +67,7 @@ def verify(content):
             result = False
 
     #Check if signature is valid
-    return jsonify(result)
+    return result
 
 """
 ---------------- Endpoints ----------------
