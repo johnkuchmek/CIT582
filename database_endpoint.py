@@ -108,7 +108,7 @@ def trade():
                 sell_currency=content['payload']['sell_currency'], \
                 buy_amount=content['payload']['buy_amount'], \
                 sell_amount=content['payload']['sell_amount'], \
-                signature=content['fields']['sig'] )
+                signature=content['sig']['signature'] )
             fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount','signature']
             order_obj = Order(**{f:order[f] for f in fields})
             
