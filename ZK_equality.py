@@ -7,12 +7,12 @@ def ZK_equality(G,H):
     R1 = utils.get_random_num(bits=128)
     R2 = utils.get_random_num(bits=128)
     m = utils.get_random_num(bits=128)
-	
-	r1 = Secret(R1)
-	r1_Prime = Secret(R1)
-	r2 = Secret(R2)
-	r2_Prime = Secret(R2)
-	
+    
+    r1 = Secret(R1)
+    r1_Prime = Secret(R1)
+    r2 = Secret(R2)
+    r2_Prime = Secret(R2)
+    
     C1 = R1 * G
     C2 = R1 * H + m * G
     D1 = R2 * G
