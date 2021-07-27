@@ -50,7 +50,7 @@ def verify(content):
         eth_sig_obj = content
         pk = eth_account.Account.recover_message(eth_encoded_msg,signature=content['sig'])
         
-        if pk == content['payload']['pk']:
+        if pk == content['payload']['sender_pk']:
             result = True
         else:
             result = False
