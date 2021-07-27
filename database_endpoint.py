@@ -127,6 +127,8 @@ def order_book():
     result = []
     for d in data:
         result.append(d)
+    print("I am here!")
+    print type(result)
     return jsonify(result)
 
 if __name__ == '__main__':
