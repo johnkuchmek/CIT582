@@ -123,8 +123,8 @@ def trade():
 def order_book():
     #Your code here
     #Note that you can access the database session using g.session
-    result = Order.query.all()
-    result = [r for r, in result]
+    result = g.session.query(Order).all()
+    print(type(result))
     return jsonify(result)
 
 if __name__ == '__main__':
