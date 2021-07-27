@@ -6,7 +6,7 @@ def ZK_equality(G,H):
     #Generate two El-Gamal ciphertexts (C1,C2) and (D1,D2)
     R1 = utils.get_random_num(bits=128)
     R2 = utils.get_random_num(bits=128)
-    m = utils.get_random_num(bits=128)
+    m = Secret(utils.get_random_num(bits=128))
     
     r1 = Secret(R1)
     r1_Prime = Secret(R1)
