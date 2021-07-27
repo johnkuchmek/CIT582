@@ -126,7 +126,14 @@ def order_book():
     data = g.session.query(Order)
     result = []
     for d in data:
-        dic = dict(d)
+        dic = {}
+        dic['sender_pk'] = Order['sender_pk']
+        dic['receiver_pk'] = Order['receiver_pk']
+        dic['buy_currency'] = Order['buy_currency']
+        dic['sell_currency'] = Order['sell_currency']
+        dic['buy_amount'] = Order['buy_amount']
+        dic['sell_amount'] = Order['sell_amount']
+        dic['signature'] = Order['signature']
         result.append(dic)
     return jsonify(result)
 
