@@ -61,7 +61,7 @@ def verify(content):
         algo_sk, algo_pk = algosdk.account.generate_account()
         algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
 
-        if algosdk.util.verify_bytes(payload.encode('utf-8'),content['sig'],content['payload']['pk']):
+        if algosdk.util.verify_bytes(payload.encode('utf-8'),content['sig'],content['payload']['sender_pk']):
             result = True
         else:
             result = False
