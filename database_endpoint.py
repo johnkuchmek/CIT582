@@ -136,6 +136,8 @@ def order_book():
         dic['signature'] = Order.signature
         result.append(dic)
     resultDict = {'data': result}
+    print(result)
+    print(resultDict)
     return jsonify(resultDict)
 
 if __name__ == '__main__':
