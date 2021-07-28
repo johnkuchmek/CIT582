@@ -126,18 +126,18 @@ def order_book():
     data = g.session.query(Order)
     result = []
     for d in data:
+        content = json.dumps(d)
         dic = {}
-        dic['sender_pk'] = Order.sender_pk
-        dic['receiver_pk'] = Order.receiver_pk
-        dic['buy_currency'] = Order.buy_currency
-        dic['sell_currency'] = Order.sell_currency
-        dic['buy_amount'] = Order.buy_amount
-        dic['sell_amount'] = Order.sell_amount
-        dic['signature'] = Order.signature
+        dic['sender_pk'] = content['sender_pk']
+        dic['receiver_pk'] = content['receiver_pk']
+        dic['buy_currency'] = content['buy_currency']
+        dic['sell_currency'] = content['sell_currency']
+        dic['buy_amount'] = content['buy_amount']
+        dic['sell_amount'] = content['sell_amount']
+        dic['signature'] = content['signature']
         result.append(dic)
     resultDict = {'data': result}
     print(result)
-    print(resultDict)
     return jsonify(resultDict)
 
 if __name__ == '__main__':
