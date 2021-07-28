@@ -136,8 +136,7 @@ def order_book():
         dic['signature'] = d.signature
         result.append(dic)
     resultDict = {'data': result}
-    print(resultDict)
-    return jsonify(resultDict)
+    return resultDict
 
 if __name__ == '__main__':
     app.run(port='5002')
