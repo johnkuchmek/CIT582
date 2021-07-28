@@ -135,7 +135,8 @@ def order_book():
         dic['sell_amount'] = Order.sell_amount
         dic['signature'] = Order.signature
         result.append(dic)
-    return json.dumps(result)
+    resultDict = {'data': result}
+    return jsonfiy(resultDict)
 
 if __name__ == '__main__':
     app.run(port='5002')
