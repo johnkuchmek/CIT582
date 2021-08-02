@@ -47,6 +47,7 @@ class TXO:
         cls.owner = output['scriptPubKey']['addresses'][0]
         cls.time = datetime.fromtimestamp(tx['time'])
         print(tx)
+        print(cls)
 
     def get_inputs(self,d=1):
         pass
