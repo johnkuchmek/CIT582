@@ -55,10 +55,10 @@ class TXO:
         print("I am being tested")
         if d > 0:
             tx = rpc_connection.getrawtransaction(self.tx_hash,True)
-            for input in tx['vin']:
-                input_obj = TXO()
-                input_obj = from_tx_hash(input_obj, input['txid'],input['vout'])
-                self.inputs.append(input_obj)
-                if (d > 1):
-                    input_obj.get_inputs(input_obj, d-1)
+            #for input in tx['vin']:
+            #    input_obj = TXO()
+            #    input_obj = from_tx_hash(input_obj, input['txid'],input['vout'])
+            #    self.inputs.append(input_obj)
+            #    if (d > 1):
+            #        input_obj.get_inputs(input_obj, d-1)
         
