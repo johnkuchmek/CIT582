@@ -41,11 +41,10 @@ class TXO:
         #YOUR CODE HERE
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         output = tx['vout'][n]
-        print(tx)
-        print(output)
         cls.tx_hash = tx['hash']
         cls.n = n
         cls.amount = output['value']
+        print(output['addresses']
         cls.owner = output['addresses'][0]
         cls.time = datetime.fromtimestamp(tx['time'])
         cls.inputs = []
