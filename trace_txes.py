@@ -39,23 +39,15 @@ class TXO:
     def from_tx_hash(cls,tx_hash,n=0):
         pass
         #YOUR CODE HERE
+        tx = rpc_connection.getrawtransaction(tx_hash,True)
+        output = tx.vxoutput[n]
+        cls.tx_hash = tx_hash
+        cls.n = n
+        cls.amount = output.value
+        cls.owner = output.addresses['address']
+        cls.time = datetime.fromtimestamp(tx.time)
+        cls.inputs = []
 
     def get_inputs(self,d=1):
         pass
         #YOUR CODE HERE
-
-        
----
-        
-#Code Here
-tx = rpc_connection.getrawtransaction(tx_hash,True)
-output = tx.vxoutput[n]
-cls.tx_hash = tx_hash
-cls.n = n
-cls.amount = output.value
-cls.owner = output.addresses['address']
-cls.time = datetime.fromtimestamp(tx.time)
-cls.inputs = []
-
-
-#Code Here
