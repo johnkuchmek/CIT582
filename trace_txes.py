@@ -47,6 +47,7 @@ class TXO:
         cls.owner = output['scriptPubKey']['addresses'][0]
         cls.time = datetime.fromtimestamp(tx['time'])
         cls.inputs = []
+        print(tx)
 
     def get_inputs(self,d=1):
         pass
@@ -55,7 +56,7 @@ class TXO:
             tx = rpc_connection.getrawtransaction(self.tx_hash,True)
             print(tx)
             for input in tx['vin']:
-                input_obj = from_tx_hash(input_obj, input['txid'],n=0)
+                input_obj = from_tx_hash(input_obj, input['txid']input['n'])
                 self.inputs.append(input_obj)
                 if (d > 1):
                     get_inputs(input_obj, d-1)
