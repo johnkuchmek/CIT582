@@ -43,7 +43,7 @@ class TXO:
         output = tx['vout'][n]
         cls.tx_hash = tx['hash']
         cls.n = n
-        cls.amount = output['value']
+        cls.amount = output['value'] * 100000000
         cls.owner = output['scriptPubKey']['addresses'][0]
         cls.time = datetime.fromtimestamp(tx['time'])
         cls.inputs = []
