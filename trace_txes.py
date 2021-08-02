@@ -41,6 +41,7 @@ class TXO:
         #YOUR CODE HERE
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         output = tx['vout'][n]
+        print(tx)
         print(output)
         cls.tx_hash = tx['hash']
         cls.n = n
