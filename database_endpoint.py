@@ -127,15 +127,16 @@ def order_book():
     result = []
     for d in data:
         dic = {}
-        dic['sender_pk'] = Order.sender_pk
-        dic['receiver_pk'] = Order.receiver_pk
-        dic['buy_currency'] = Order.buy_currency
-        dic['sell_currency'] = Order.sell_currency
-        dic['buy_amount'] = Order.buy_amount
-        dic['sell_amount'] = Order.sell_amount
-        dic['signature'] = Order.signature
+        dic['sender_pk'] = d.sender_pk
+        dic['receiver_pk'] = d.receiver_pk
+        dic['buy_currency'] = d.buy_currency
+        dic['sell_currency'] = d.sell_currency
+        dic['buy_amount'] = d.buy_amount
+        dic['sell_amount'] = d.sell_amount
+        dic['signature'] = d.signature
         result.append(dic)
-    return jsonify(result)
+    resultDict = {'data': result}
+    return resultDict
 
 if __name__ == '__main__':
     app.run(port='5002')
