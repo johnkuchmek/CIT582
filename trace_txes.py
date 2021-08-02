@@ -56,7 +56,7 @@ class TXO:
         if d > 0:
             tx = rpc_connection.getrawtransaction(self.tx_hash,True)
             for input in tx['vin']:
-                input_obj = from_tx_hash(input_obj, input['txid'],input['vout'])
+                from_tx_hash(input_obj, input['txid'],input['vout'])
                 self.inputs.append(input_obj)
                 if (d > 1):
                     get_inputs(input_obj, d-1)
