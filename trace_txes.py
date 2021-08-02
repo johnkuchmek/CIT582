@@ -40,7 +40,7 @@ class TXO:
         pass
         #YOUR CODE HERE
         tx = rpc_connection.getrawtransaction(tx_hash,True)
-        output = tx['vout']
+        output = tx['vout'][n]
         print(output)
         cls.tx_hash = tx['hash']
         cls.n = n
