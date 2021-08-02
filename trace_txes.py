@@ -44,8 +44,7 @@ class TXO:
         cls.tx_hash = tx['hash']
         cls.n = n
         cls.amount = output['value']
-        print(output)
-        cls.owner = output['addresses'][0]
+        cls.owner = output['scriptPubKey']['addresses'][0]
         cls.time = datetime.fromtimestamp(tx['time'])
         cls.inputs = []
 
