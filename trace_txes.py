@@ -40,6 +40,7 @@ class TXO:
         pass
         #YOUR CODE HERE
         tx = rpc_connection.getrawtransaction(tx_hash,True)
+        print(tx)
         output = tx['vxout']
         print(output)
         cls.tx_hash = tx['hash']
