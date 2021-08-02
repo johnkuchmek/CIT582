@@ -59,5 +59,5 @@ class TXO:
                 from_tx_hash(input_obj, input['txid'],input['vout'])
                 self.inputs.append(input_obj)
                 if (d > 1):
-                    get_inputs(input_obj, d-1)
+                    input_obj.get_inputs(input_obj, d-1)
         
