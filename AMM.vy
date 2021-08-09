@@ -21,6 +21,10 @@ def get_token_address(token: uint256) -> address:
 def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity: uint256, tokenB_quantity: uint256):
 	assert self.invariant == 0 #This ensures that liquidity can only be provided once
 	#Your code here
+	self.tokenAQty += tokenA_Quantity
+	self.tokenBQty += tokenBQuantity
+	tokenA.transferFrom(tokenA.address, self.owner, tokenA_quantity)
+	tokenB.transferFrom(tokenB.address, self.owner, tokenB_quantity)
 	assert self.invariant > 0
 
 # Trades one token for the other
@@ -28,9 +32,25 @@ def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity
 def tradeTokens(sell_token: address, sell_quantity: uint256):
 	assert sell_token == self.tokenA.address or sell_token == self.tokenB.address
 	#Your code here
+	if sell_token == self.tokenA.address:
+		tokensToTrade = self.tokenBQty - self.invariant / (self.tokenAQty - sell_quantity)
+		tokenAQty += sell_quantity
+		tokenBQty -= tokensToTrade
+		tokenA.transferFrom(sell_token, self.owner,sell_quantity)
+		tokenB.transferFrom(self.owner,sell_token,tokensToTrade)
+	if sell_token == self.tokenB.address:
+		tokensToTrade = self.tokenAQty - self.invariant / (self.tokenBQty - sell_quantity)
+		tokenBQty += sell_quantity
+		tokenAQty -= tokensToTrade
+		tokenB.transferFrom(sell_token, self.owner,sell_quantity)
+		tokenA.transferFrom(self.owner,sell_token,tokensToTrade)
 
 # Owner can withdraw their funds and destroy the market maker
 @external
 def ownerWithdraw():
     assert self.owner == msg.sender
 	#Your code here
+	tokenA.transferFrom(self.owner,tokenA.address, self.tokenAQty)
+	tokenB.transferFrom(self.owner,tokenB.address, self.tokenBQty)
+	self.tokenAQty = 0
+	self.tokenBQty = 0
