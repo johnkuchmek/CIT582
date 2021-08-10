@@ -24,8 +24,8 @@ def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity
     #Your code here
     self.tokenAQty += tokenA_quantity
     self.tokenBQty += tokenB_quantity
-    self.tokenA.address = tokenA_addr
-    self.tokenB.address = tokenB_addr
+    self.tokenA = tokenA_addr
+    self.tokenB = tokenB_addr
     self.invariant = self.tokenAQty * self.tokenBQty
     self.owner = msg.sender
 #    self.tokenA.transferFrom(tokenA_addr, self.owner, tokenA_quantity)
