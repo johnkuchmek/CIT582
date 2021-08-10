@@ -44,7 +44,7 @@ def check_sig(payload,sig):
 
         payloadtxt = json.dumps(payload)
         eth_encoded_msg = eth_account.messages.encode_defunct(text=payloadtxt)
-        eth_sig_obj = content
+        eth_sig_obj = payload
         pk = eth_account.Account.recover_message(eth_encoded_msg,signature=sig)
         
         if pk == payload['sender_pk']:
