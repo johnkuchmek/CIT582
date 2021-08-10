@@ -37,16 +37,16 @@ def tradeTokens(sell_token: address, sell_quantity: uint256):
     assert sell_token == self.tokenA.address or sell_token == self.tokenB.address
     #Your code here
     if sell_token == self.tokenA.address:
+        self.tokenA.transferFrom(msg.sender,self.tokenA.address,sell_quantity)
+        self.tokenB.transferFrom(self.tokenB.address, msg.sender,self.invariant / (self.tokenAQty - sell_quantity) - self.tokenBQty)
         self.tokenAQty += sell_quantity
         self.tokenBQty -= self.tokenBQty - self.invariant / (self.tokenAQty - sell_quantity)
-        self.tokenA.transferFrom(msg.sender,self.tokenA.address,sell_quantity)
-        self.tokenB.transferFrom(self.tokenB.address, msg.sender,-(self.tokenBQty * self.invariant / (self.tokenAQty - sell_quantity)))
         self.invariant = self.tokenAQty * self.tokenBQty
     else:
+        self.tokenB.transferFrom(msg.sender, self.tokenB.address,sell_quantity)
+        self.tokenA.transferFrom(self.tokenA.address, msg.sender, self.invariant / (self.tokenBQty - sell_quantity)- self.tokenAQty)
         self.tokenBQty += sell_quantity
         self.tokenAQty -= self.tokenAQty - self.invariant / (self.tokenBQty - sell_quantity)
-        self.tokenB.transferFrom(msg.sender, self.tokenB.address,sell_quantity)
-        self.tokenA.transferFrom(self.tokenA.address, msg.sender,-(self.tokenAQty * self.invariant / (self.tokenBQty - sell_quantity)))
         self.invariant = self.tokenAQty * self.tokenBQty
 
 # Owner can withdraw their funds and destroy the market maker
