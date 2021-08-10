@@ -56,3 +56,6 @@ def ownerWithdraw():
     #Your code here
     self.tokenA.transferFrom(self.tokenA.address, msg.sender, self.tokenAQty)
     self.tokenB.transferFrom(self.tokenB.address, msg.sender, self.tokenBQty)
+    self.tokenAQty = 0
+    self.tokenBQty = 0
+    self.invariant = 0
