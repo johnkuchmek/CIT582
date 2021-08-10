@@ -2,7 +2,6 @@ from vyper.interfaces import ERC20
 
 tokenAQty: public(uint256) #Quantity of tokenA held by the contract
 tokenBQty: public(uint256) #Quantity of tokenB held by the contract
-tokensToTrade: public(uint256)
 
 invariant: public(uint256) #The Constant-Function invariant (tokenAQty*tokenBQty = invariant throughout the life of the contract)
 tokenA: ERC20 #The ERC20 contract for tokenA
@@ -38,15 +37,13 @@ def tradeTokens(sell_token: address, sell_quantity: uint256):
     assert sell_token == self.tokenA.address or sell_token == self.tokenB.address
     #Your code here
     if sell_token == self.tokenA.address:
-        self.tokensToTrade = self.tokenBQty - self.invariant / (self.tokenAQty - sell_quantity)
         self.tokenAQty += sell_quantity
-        self.tokenBQty -= self.tokensToTrade
+        self.tokenBQty -= self.tokenBQty - self.invariant / (self.tokenAQty - sell_quantity)
 #        self.tokenA.transferFrom(sell_token, self.owner,sell_quantity)
 #        self.tokenB.transferFrom(self.owner,sell_token,self.tokensToTrade)
     if sell_token == self.tokenB.address:
-        self.tokensToTrade = self.tokenAQty - self.invariant / (self.tokenBQty - sell_quantity)
         self.tokenBQty += sell_quantity
-        self.tokenAQty -= self.tokensToTrade
+        self.tokenAQty -= self.tokenAQty - self.invariant / (self.tokenBQty - sell_quantity)
 #        self.tokenB.transferFrom(sell_token, self.owner,sell_quantity)
 #        self.tokenA.transferFrom(self.owner,sell_token,self.tokensToTrade)
 
