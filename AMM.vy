@@ -2,6 +2,7 @@ from vyper.interfaces import ERC20
 
 tokenAQty: public(uint256) #Quantity of tokenA held by the contract
 tokenBQty: public(uint256) #Quantity of tokenB held by the contract
+tokensToTrade: public(uint256)
 
 invariant: public(uint256) #The Constant-Function invariant (tokenAQty*tokenBQty = invariant throughout the life of the contract)
 tokenA: ERC20 #The ERC20 contract for tokenA
@@ -39,7 +40,8 @@ def tradeTokens(sell_token: address, sell_quantity: uint256):
     if sell_token == self.tokenA.address:
         self.tokenA.transferFrom(msg.sender,self.tokenA.address,sell_quantity)
         self.tokenAQty = self.tokenAQty + sell_quantity
-        self.tokenB.transferFrom(self.tokenB.address, msg.sender, (self.tokenBQty - (self.invariant / self.tokenAQty)))
+		self.tokensToTrade = self.tokenBQty - (self.invariant / self.tokenAQty)
+#        self.tokenB.transferFrom(self.tokenB.address, msg.sender, (self.tokenBQty - (self.invariant / self.tokenAQty)))
         self.tokenBQty = self.invariant / self.tokenAQty
 #        self.invariant = self.tokenAQty * self.tokenBQty
     else:
