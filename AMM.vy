@@ -22,8 +22,8 @@ def get_token_address(token: uint256) -> address:
 def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity: uint256, tokenB_quantity: uint256):
     assert self.invariant == 0 #This ensures that liquidity can only be provided once
     #Your code here
-    self.tokenAQty += self.tokenA_Quantity
-    self.tokenBQty += self.tokenB_Quantity
+    self.tokenAQty += tokenA_quantity
+    self.tokenBQty += tokenB_quantity
     tokenA.transferFrom(tokenA.address, self.owner, tokenA_quantity)
     tokenB.transferFrom(tokenB.address, self.owner, tokenB_quantity)
     assert self.invariant > 0
@@ -36,7 +36,7 @@ def tradeTokens(sell_token: address, sell_quantity: uint256):
     if sell_token == self.tokenA.address:
         self.tokensToTrade = self.tokenBQty - self.invariant / (self.tokenAQty - sell_quantity)
         self.tokenAQty += sell_quantity
-        self.tokenBQty -= tokensToTrade
+        self.tokenBQty -= self.tokensToTrade
         self.tokenA.transferFrom(sell_token, self.owner,sell_quantity)
         self.tokenB.transferFrom(self.owner,sell_token,tokensToTrade)
     if sell_token == self.tokenB.address:
