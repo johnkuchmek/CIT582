@@ -26,8 +26,8 @@ def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity
     self.tokenBQty += tokenB_quantity
     self.tokenA.address = tokenA_addr
     self.tokenB.address = tokenB_addr
-    self.tokenA.transferFrom(tokenA_addr, self.owner, tokenA_quantity)
-    self.tokenB.transferFrom(tokenB_addr, self.owner, tokenB_quantity)
+#    self.tokenA.transferFrom(tokenA_addr, self.owner, tokenA_quantity)
+#    self.tokenB.transferFrom(tokenB_addr, self.owner, tokenB_quantity)
     self.invariant = self.tokenAQty * self.tokenBQty
     assert self.invariant > 0
 
@@ -40,21 +40,21 @@ def tradeTokens(sell_token: address, sell_quantity: uint256):
         self.tokensToTrade = self.tokenBQty - self.invariant / (self.tokenAQty - sell_quantity)
         self.tokenAQty += sell_quantity
         self.tokenBQty -= self.tokensToTrade
-        self.tokenA.transferFrom(sell_token, self.owner,sell_quantity)
-        self.tokenB.transferFrom(self.owner,sell_token,self.tokensToTrade)
+#        self.tokenA.transferFrom(sell_token, self.owner,sell_quantity)
+#        self.tokenB.transferFrom(self.owner,sell_token,self.tokensToTrade)
     if sell_token == self.tokenB.address:
         self.tokensToTrade = self.tokenAQty - self.invariant / (self.tokenBQty - sell_quantity)
         self.tokenBQty += sell_quantity
         self.tokenAQty -= self.tokensToTrade
-        self.tokenB.transferFrom(sell_token, self.owner,sell_quantity)
-        self.tokenA.transferFrom(self.owner,sell_token,self.tokensToTrade)
+#        self.tokenB.transferFrom(sell_token, self.owner,sell_quantity)
+#        self.tokenA.transferFrom(self.owner,sell_token,self.tokensToTrade)
 
 # Owner can withdraw their funds and destroy the market maker
 @external
 def ownerWithdraw():
     assert self.owner == msg.sender
     #Your code here
-    self.tokenA.transferFrom(self.owner,self.tokenA.address, self.tokenAQty)
-    self.tokenB.transferFrom(self.owner,self.tokenB.address, self.tokenBQty)
+#    self.tokenA.transferFrom(self.owner,self.tokenA.address, self.tokenAQty)
+#    self.tokenB.transferFrom(self.owner,self.tokenB.address, self.tokenBQty)
     self.tokenAQty = 0
     self.tokenBQty = 0
