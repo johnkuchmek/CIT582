@@ -58,7 +58,7 @@ def check_sig(payload,sig):
         algo_sk, algo_pk = algosdk.account.generate_account()
         algo_sig_str = algosdk.util.sign_bytes(payloadtxt.encode('utf-8'),algo_sk)
 
-        if algosdk.util.verify_bytes(payloadtxt.encode('utf-8'),content['sig'],payload['sender_pk']):
+        if algosdk.util.verify_bytes(payloadtxt.encode('utf-8'),sig,payload['sender_pk']):
             result = True
         else:
             result = False
@@ -153,7 +153,7 @@ def trade():
         #Your code here
         #Note that you can access the database session using g.session
         # TODO: Check the signature
-        if check_sig(content["payload"],content["sig"]) == false:
+        if check_sig(content["payload"],content["sig"]) == False:
             return jsonify(False)
         
         # TODO: Add the order to the database
