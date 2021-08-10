@@ -27,8 +27,6 @@ def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity
     self.tokenB = ERC20(tokenB_addr)
     self.invariant = self.tokenAQty * self.tokenBQty
     self.owner = msg.sender
-    self.tokenA.transferFrom(tokenA_addr, tokenA_addr, tokenA_quantity)
-    self.tokenB.transferFrom(tokenB_addr, tokenB_addr, tokenB_quantity)
     assert self.invariant > 0
 
 # Trades one token for the other
@@ -39,7 +37,8 @@ def tradeTokens(sell_token: address, sell_quantity: uint256):
     if sell_token == self.tokenA.address:
         self.tokenAQty += sell_quantity
         self.tokenBQty -= self.tokenBQty - self.invariant / (self.tokenAQty - sell_quantity)
-#        self.tokenA.sell(sell_quantity)
+        self.tokenB.transferFrom(sell_token, self.tokenA.address,sell_quantity)
+        self.tokenA.transferFrom(self.tokenB.address,sell_token,sell_quantity)
     if sell_token == self.tokenB.address:
         self.tokenBQty += sell_quantity
         self.tokenAQty -= self.tokenAQty - self.invariant / (self.tokenBQty - sell_quantity)
@@ -51,7 +50,7 @@ def tradeTokens(sell_token: address, sell_quantity: uint256):
 def ownerWithdraw():
     assert self.owner == msg.sender
     #Your code here
-    self.tokenA.transferFrom(self.owner,self.tokenA.address, self.tokenAQty)
-    self.tokenB.transferFrom(self.owner,self.tokenB.address, self.tokenBQty)
+#    self.tokenA.transferFrom(self.owner,self.tokenA.address, self.tokenAQty)
+#    self.tokenB.transferFrom(self.owner,self.tokenB.address, self.tokenBQty)
     self.tokenAQty = 0
     self.tokenBQty = 0
