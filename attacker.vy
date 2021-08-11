@@ -26,7 +26,7 @@ def attack(dao_address:address):
     self.dao_address = dao_address
     self.owner_address = msg.sender
     deposit_amount: uint256 = msg.value
-    DAO(self.address).deposit(value=deposit_amount)
+    DAO(self).deposit(value=deposit_amount)
  
     # Attack cannot withdraw more than what exists in the DAO
     if dao_address.balance < msg.value:
