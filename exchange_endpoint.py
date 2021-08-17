@@ -335,6 +335,8 @@ def order_book():
         dic['signature'] = d.signature
         result.append(dic)
     resultDict = {'data': result}
+    print(resultDict)
+    print(result)
     return resultDict
     return jsonify(result)
     pass
