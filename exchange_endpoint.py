@@ -235,7 +235,7 @@ def trade():
             return jsonify(False)
         
         # 2. Add the order to the table
-        orderFields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount', 'creator_id']
+        orderFields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
         newOrder = {}
         newOrder['sender_pk'] = content["payload"]["sender_pk"]
         newOrder['receiver_pk'] = content["payload"]["receiver_pk"]
