@@ -154,6 +154,7 @@ def execute_txes(txes):
   
 @app.route('/address', methods=['POST'])
 def address():
+    print("I am trying")
     if request.method == "POST":
         content = request.get_json(silent=True)
         if 'sell_currency' not in content['payload'].keys():
