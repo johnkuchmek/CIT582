@@ -235,7 +235,7 @@ def trade():
             return jsonify(False)
         
         # 2. Add the order to the table
-        order_obj = Order(**{f:content["payload"][f] for f in fields})
+        order_obj = Order(**{f:content["payload"][f] for f in columns})
         g.session.add(order_obj)
         g.session.commit
         
