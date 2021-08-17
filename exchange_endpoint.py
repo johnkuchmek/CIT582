@@ -248,7 +248,7 @@ def trade():
         g.session.commit
         
         # 3a. Check if the order is backed by a transaction equal to the sell_amount (this is new)
-        w3 = Web3()
+        w3 = Web3(Web3.HTTPProvider('http://' + IP_ADDR + ':' + PORT))
         if content['payload']['platform'] == "Ethereum":
             tx = w3.eth.get_transaction(content['payload']['tx_id'])
             if tx == []:
