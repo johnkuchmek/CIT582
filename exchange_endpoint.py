@@ -226,7 +226,7 @@ def trade():
             else:
                 result = False
 
-        if result = false:
+        if result == false:
             print(json.dumps(content))
             return jsonify(False)
         
@@ -238,18 +238,18 @@ def trade():
         # 3a. Check if the order is backed by a transaction equal to the sell_amount (this is new)
         if content['payload']['platform'] == "Ethereum":
             tx = w3.eth.get_transaction(content['payload']['tx_id'])
-            if tx = []:
+            if tx == []:
                 return jsonify(False)
         elif content['payload']['platform'] == "Algorand":
             tx = algosdk.search_transactions(txid=content['payload']['tx_id'])
-            if tx = []:
+            if tx == []:
                 return jsonify(False)
 
 
         # 3b. Fill the order (as in Exchange Server II) if the order is valid
         for orderToMatch in g.session.query(Order).filter(Order.filled == None):
-        possibleOrder = g.session.query(Order).filter(Order.filled == None, Order.buy_currency == orderToMatch.sell_currency, Order.sell_currency == orderToMatch.buy_currency,\
-        (Order.sell_amount / Order.buy_amount) >= (orderToMatch.buy_amount / orderToMatch.sell_amount)).first()
+          possibleOrder = g.session.query(Order).filter(Order.filled == None, Order.buy_currency == orderToMatch.sell_currency, Order.sell_currency == orderToMatch.buy_currency,\
+          (Order.sell_amount / Order.buy_amount) >= (orderToMatch.buy_amount / orderToMatch.sell_amount)).first()
         
         if possibleOrder != None and orderToMatch.filled == None:
             orderToMatch.filled = datetime.now()
@@ -328,4 +328,4 @@ def order_book():
     pass
 
 if __name__ == '__main__':
-    app.run(port='5002')
+    app.run(port='5002', debug = True)
