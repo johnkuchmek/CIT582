@@ -253,7 +253,9 @@ def trade():
             if tx == []:
                 return jsonify(False)
         elif content['payload']['platform'] == "Algorand":
-            tx = algosdk.v2client.indexer.search_transactions(txid=content['payload']['tx_id'])
+            algod_address = "https://testnet-algorand.api.purestake.io/idx2"
+            client = indexer.IndexerClient(indexer_token=algod_token, indexer_address=algod_address)
+            tx = client.search_transactions(txid=content['payload']['tx_id'])
             if tx == []:
                 return jsonify(False)
 
