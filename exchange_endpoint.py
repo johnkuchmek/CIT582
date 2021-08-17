@@ -156,18 +156,18 @@ def execute_txes(txes):
 def address():
     if request.method == "POST":
         content = request.get_json(silent=True)
-        if 'platform' not in content.keys():
+        if 'platform' not in content['payload'].keys():
             print( f"Error: no platform provided" )
             return jsonify( "Error: no platform provided" )
-        if not content['platform'] in ["Ethereum", "Algorand"]:
-            print( f"Error: {content['platform']} is an invalid platform" )
-            return jsonify( f"Error: invalid platform provided: {content['platform']}"  )
+        if not content['payload']['platform'] in ["Ethereum", "Algorand"]:
+            print( f"Error: {content['payload']['platform']} is an invalid platform" )
+            return jsonify( f"Error: invalid platform provided: {content['payload']['platform']}"  )
         
-        if content['payload']['sell_currency'] == "Ethereum":
+        if content['payload']['platform'] == "Ethereum":
             #Your code here
             eth_sk, eth_pk = get_eth_keys()
             return jsonify( eth_pk )
-        if content['payload']['sell_currency'] == "Algorand":
+        if content['payload']['platform'] == "Algorand":
             #Your code here
             algo_sk, algo_pk = get_algo_keys()
             return jsonify( algo_pk )
@@ -207,7 +207,7 @@ def trade():
         
         result = False
     
-        if content['payload']['platform'] == "Ethereum":
+        if content['payload']['sell_currency'] == "Ethereum":
             payloadtxt = json.dumps(content['payload'])
             eth_encoded_msg = eth_account.messages.encode_defunct(text=payloadtxt)
             eth_sig_obj = content['payload']
