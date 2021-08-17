@@ -255,12 +255,12 @@ def trade():
             orderToMatch.filled = datetime.now()
             orderToMatch.counterparty_id = possibleOrder.id
             g.session.commit()
-			execute_txes(orderToMatch, orderToMatch.sell_currency)
+			#execute_txes(orderToMatch, orderToMatch.sell_currency)
             
             possibleOrder.filled = datetime.now()
             possibleOrder.counterparty_id = orderToMatch.id
             g.session.commit()
-			execute_txes(orderToMatch, orderToMatch.sell_currency)
+			#execute_txes(orderToMatch, orderToMatch.sell_currency)
             
             if orderToMatch.buy_amount > possibleOrder.sell_amount or orderToMatch.sell_amount > possibleOrder.buy_amount:
                 newOrder = {}
