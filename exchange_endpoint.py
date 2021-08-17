@@ -336,8 +336,8 @@ def order_book():
         dic['tx_id'] = d.tx_id
         result.append(dic)
     resultDict = {'data': result}
-    return jsonify(resultDict)
-    #return jsonify(result)
+    return resultDict
+    return jsonify(result)
     pass
 
 if __name__ == '__main__':
