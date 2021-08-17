@@ -88,7 +88,7 @@ def connect_to_blockchains():
 
 def log_message(message_dict):
     msg = json.dumps(message_dict)
-
+    print(msg)
     # TODO: Add message to the Log table
     
     return
