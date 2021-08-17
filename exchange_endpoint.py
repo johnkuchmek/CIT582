@@ -234,7 +234,7 @@ def trade():
             return jsonify(False)
         
         # 2. Add the order to the table
-        orderFields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
+        orderFields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount', 'tx_id']
         newOrder = {}
         newOrder['sender_pk'] = content["payload"]["sender_pk"]
         newOrder['receiver_pk'] = content["payload"]["receiver_pk"]
@@ -242,6 +242,7 @@ def trade():
         newOrder['sell_currency'] = content["payload"]["sell_currency"]
         newOrder['buy_amount'] = content["payload"]["buy_amount"]
         newOrder['sell_amount'] = content["payload"]["sell_amount"]
+        newOrder['tx_id'] = content["payload"]["tx_id"]
         order_obj = Order(**{f:newOrder[f] for f in orderFields})
         g.session.add(order_obj)
         g.session.commit
@@ -332,7 +333,7 @@ def order_book():
         dic['sell_currency'] = d.sell_currency
         dic['buy_amount'] = d.buy_amount
         dic['sell_amount'] = d.sell_amount
-        dic['signature'] = d.signature
+        dic['tx_id'] = d.tx_id
         result.append(dic)
     resultDict = {'data': result}
     return jsonify(resultDict)
