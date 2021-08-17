@@ -309,8 +309,22 @@ def trade():
 @app.route('/order_book')
 def order_book():
     fields = [ "buy_currency", "sell_currency", "buy_amount", "sell_amount", "signature", "tx_id", "receiver_pk" ]
-    
     # Same as before
+    data = g.session.query(Order)
+    result = []
+    for d in data:
+        dic = {}
+        dic['sender_pk'] = d.sender_pk
+        dic['receiver_pk'] = d.receiver_pk
+        dic['buy_currency'] = d.buy_currency
+        dic['sell_currency'] = d.sell_currency
+        dic['buy_amount'] = d.buy_amount
+        dic['sell_amount'] = d.sell_amount
+        dic['signature'] = d.signature
+        result.append(dic)
+    resultDict = {'data': result}
+    return resultDict
+    return jsonify(result)
     pass
 
 if __name__ == '__main__':
