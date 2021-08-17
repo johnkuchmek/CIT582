@@ -183,6 +183,7 @@ def trade():
     if request.method == "POST":
         content = request.get_json(silent=True)
         columns = [ "buy_currency", "sell_currency", "buy_amount", "sell_amount", "platform", "tx_id", "receiver_pk"]
+        orderColumns = [ "buy_currency", "sell_currency", "buy_amount", "sell_amount", "tx_id", "receiver_pk"]
         fields = [ "sig", "payload" ]
         error = False
         for field in fields:
@@ -300,7 +301,7 @@ def trade():
                 newOrder['creator_id'] = possibleOrder.id
                 
                 fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount', 'creator_id']
-                order_obj = Order(**{f:newOrder[f] for f in fields})
+                order_obj = Order(**{f:newOrder[f] for f in orderColumns})
                 g.session.add(order_obj)
                 g.session.commit()
                 
