@@ -39,17 +39,16 @@ def send_tokens_algo( acl, sender_sk, txes):
 
     tx_ids = []
     for i,tx in enumerate(txes):
-        unsigned_tx = "Replace me with a transaction object"
-
+        unsigned_tx = transaction.PaymentTxn(tx['sender_pk'], params, tx['receiver_pk'], tx['sell_amount'])
         # TODO: Sign the transaction
-        signed_tx = "Replace me with a SignedTransaction object"
+        params.first = i
+        signed_tx = unsigned_tx.sign(sender_sk)
         
         try:
             print(f"Sending {tx['amount']} microalgo from {sender_pk} to {tx['receiver_pk']}" )
             
             # TODO: Send the transaction to the testnet
-            
-            tx_id = "Replace me with the tx_id"
+            tx_id = acl.send_transaction(signed_tx)
             txinfo = wait_for_confirmation_algo(acl, txid=tx_id )
             print(f"Sent {tx['amount']} microalgo in transaction: {tx_id}\n" )
         except Exception as e:
