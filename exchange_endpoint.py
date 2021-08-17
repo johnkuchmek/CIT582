@@ -336,7 +336,7 @@ def order_book():
         result.append(dic)
     #resultDict = {'data': result}
     #return resultDict
-    return jsonify(result)
+    return result
     pass
 
 if __name__ == '__main__':
