@@ -230,7 +230,7 @@ def trade():
             else:
                 result = False
 
-        if result == false:
+        if result == False:
             print(json.dumps(content))
             return jsonify(False)
         
