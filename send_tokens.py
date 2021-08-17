@@ -25,6 +25,7 @@ def send_tokens_algo( acl, sender_sk, txes):
     # TODO: You might want to adjust the first/last valid rounds in the suggested_params
     #       See guide for details
 
+
     # TODO: For each transaction, do the following:
     #       - Create the Payment transaction 
     #       - Sign the transaction
@@ -107,6 +108,7 @@ def wait_for_confirmation_eth(w3, tx_hash):
     return receipt
 
 
+
 ####################
 def send_tokens_eth(w3,sender_sk,txes):
     sender_account = w3.eth.account.privateKeyToAccount(sender_sk)
@@ -116,8 +118,19 @@ def send_tokens_eth(w3,sender_sk,txes):
     # Make sure you track the nonce -locally-
     
     tx_ids = []
+    starting_nonce = w3.eth.get_transaction_count(sender_pk,"pending")
     for i,tx in enumerate(txes):
         # Your code here
+        tx_dict = {
+                'nonce': starting_nonce+i, #Locally update nonce
+                'gasPrice':w3.eth.gas_price,
+                'gas': w3.eth.estimate_gas( { 'from': sender_pk, 'to': receiver_pk, 'data': b'', 'amount': tx_amount } ),
+                'to': receiver_pk,
+                'value': tx_amount,
+                'data':b'' }
+        signed_txn = w3.eth.account.sign_transaction(tx_dict, sender_sk)
+        tx_id = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+        tx_ids.append(tx_id)
         continue
 
     return tx_ids
