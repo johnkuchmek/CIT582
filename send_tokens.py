@@ -12,7 +12,7 @@ def connect_to_algo(connection_type=''):
     if connection_type == "indexer":
         # TODO: return an instance of the v2client indexer. This is used for checking payments for tx_id's
         algod_address = "https://testnet-algorand.api.purestake.io/idx2"
-        client = indexer.IndexerClient(algod_token, algod_address)
+        client = indexer.IndexerClient(algod_token, algod_address, headers=purestake_token)
         return client
     else:
         # TODO: return an instance of the client for sending transactions
