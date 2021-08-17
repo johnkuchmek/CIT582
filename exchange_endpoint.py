@@ -235,7 +235,8 @@ def trade():
             return jsonify(False)
         
         # 2. Add the order to the table
-        order_obj = Order(**{f:content["payload"][f] for f in content["payload"].keys()})
+        orderFields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount', 'creator_id']
+        order_obj = Order(**{f:newOrder[f] for f in orderFields})
         g.session.add(order_obj)
         g.session.commit
         
