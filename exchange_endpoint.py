@@ -111,6 +111,8 @@ def get_eth_keys(filename = "eth_mnemonic.txt"):
     
     eth_pk = acct._address
     eth_sk = acct._private_key
+    print(eth_sk)
+    print(eth_pk)
     
     return eth_sk, eth_pk
   
