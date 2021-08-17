@@ -237,12 +237,12 @@ def trade():
         # 2. Add the order to the table
         orderFields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount', 'creator_id']
         newOrder = {}
-        newOrder['sender_pk'] = content["payloads"]["sender_pk"]
-        newOrder['receiver_pk'] = content["payloads"]["receiver_pk"]
-        newOrder['buy_currency'] = content["payloads"]["buy_currency"]
-        newOrder['sell_currency'] = content["payloads"]["sell_currency"]
-        newOrder['buy_amount'] = content["payloads"]["buy_amount"]
-        newOrder['sell_amount'] = content["payloads"]["sell_amount"]
+        newOrder['sender_pk'] = content["payload"]["sender_pk"]
+        newOrder['receiver_pk'] = content["payload"]["receiver_pk"]
+        newOrder['buy_currency'] = content["payload"]["buy_currency"]
+        newOrder['sell_currency'] = content["payload"]["sell_currency"]
+        newOrder['buy_amount'] = content["payload"]["buy_amount"]
+        newOrder['sell_amount'] = content["payload"]["sell_amount"]
         order_obj = Order(**{f:newOrder[f] for f in orderFields})
         g.session.add(order_obj)
         g.session.commit
