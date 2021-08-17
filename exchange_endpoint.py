@@ -251,11 +251,11 @@ def trade():
             tx = g.w3.eth.get_transaction(content['payload']['tx_id'])
             if tx == []:
                 return jsonify(False)
-        elif content['payload']['platform'] == "Algorand":
-            client = connect_to_algo(connection_type = "indexer")
-            tx = client.search_transactions(txid=content['payload']['tx_id'])
-            if tx == []:
-                return jsonify(False)
+        #elif content['payload']['platform'] == "Algorand":
+        #    client = connect_to_algo(connection_type = "indexer")
+        #    tx = client.search_transactions(txid=content['payload']['tx_id'])
+        #    if tx == []:
+        #        return jsonify(False)
 
 
         # 3b. Fill the order (as in Exchange Server II) if the order is valid
