@@ -183,7 +183,6 @@ def trade():
     if request.method == "POST":
         content = request.get_json(silent=True)
         columns = [ "buy_currency", "sell_currency", "buy_amount", "sell_amount", "platform", "tx_id", "receiver_pk"]
-        orderColumns = [ "buy_currency", "sell_currency", "buy_amount", "sell_amount", "tx_id", "receiver_pk"]
         fields = [ "sig", "payload" ]
         error = False
         for field in fields:
@@ -281,8 +280,8 @@ def trade():
                     newOrder['buy_amount'] = orderToMatch.buy_amount / orderToMatch.sell_amount * newOrder['sell_amount']
                 newOrder['creator_id'] = orderToMatch.id
                 
-                fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount','creator_id']
-                order_obj = Order(**{f:newOrder[f] for f in fields})
+                orderFields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount','creator_id']
+                order_obj = Order(**{f:newOrder[f] for f in orderFields})
                 g.session.add(order_obj)
                 g.session.commit()
 
@@ -300,8 +299,8 @@ def trade():
                     newOrder['sell_amount'] = possibleOrder.sell_amount / possibleOrder.buy_amount * newOrder['buy_amount']
                 newOrder['creator_id'] = possibleOrder.id
                 
-                fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount', 'creator_id']
-                order_obj = Order(**{f:newOrder[f] for f in orderColumns})
+                orderFields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount', 'creator_id']
+                order_obj = Order(**{f:newOrder[f] for f in orderFields})
                 g.session.add(order_obj)
                 g.session.commit()
                 
