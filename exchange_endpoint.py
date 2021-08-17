@@ -101,7 +101,7 @@ def get_algo_keys():
     return algo_sk, algo_pk
 
 
-def get_eth_keys(filename = "eth_mnemonic.txt"):
+def get_eth_keys():
     w3 = Web3()
     
     # TODO: Generate or read (using the mnemonic secret) 
@@ -177,7 +177,7 @@ def address():
 def trade():
     print( "In trade", file=sys.stderr )
     connect_to_blockchains()
-    get_keys()
+    #get_keys()
     if request.method == "POST":
         content = request.get_json(silent=True)
         columns = [ "buy_currency", "sell_currency", "buy_amount", "sell_amount", "platform", "tx_id", "receiver_pk"]
