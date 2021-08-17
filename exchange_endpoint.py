@@ -157,9 +157,9 @@ def address():
     print("I am trying")
     if request.method == "POST":
         content = request.get_json(silent=True)
-        if 'sell_currency' not in content['payload'].keys():
-            print( f"Error: no platform provided" )
-            return jsonify( "Error: no platform provided" )
+        #if 'sell_currency' not in content['payload'].keys():
+        #    print( f"Error: no platform provided" )
+        #    return jsonify( "Error: no platform provided" )
         if not content['payload']['sell_currency'] in ["Ethereum", "Algorand"]:
             print( f"Error: {content['payload']['sell_currency']} is an invalid platform" )
             return jsonify( f"Error: invalid platform provided: {content['payload']['sell_currency']}"  )
