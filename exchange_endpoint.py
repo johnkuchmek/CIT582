@@ -156,18 +156,18 @@ def execute_txes(txes):
 def address():
     if request.method == "POST":
         content = request.get_json(silent=True)
-        if 'platform' not in content['payload'].keys():
+        if 'sell_currency' not in content['payload'].keys():
             print( f"Error: no platform provided" )
             return jsonify( "Error: no platform provided" )
-        if not content['payload']['platform'] in ["Ethereum", "Algorand"]:
-            print( f"Error: {content['payload']['platform']} is an invalid platform" )
-            return jsonify( f"Error: invalid platform provided: {content['payload']['platform']}"  )
+        if not content['payload']['sell_currency'] in ["Ethereum", "Algorand"]:
+            print( f"Error: {content['payload']['sell_currency']} is an invalid platform" )
+            return jsonify( f"Error: invalid platform provided: {content['payload']['sell_currency']}"  )
         
-        if content['payload']['platform'] == "Ethereum":
+        if content['payload']['sell_currency'] == "Ethereum":
             #Your code here
             eth_sk, eth_pk = get_eth_keys()
             return jsonify( eth_pk )
-        if content['payload']['platform'] == "Algorand":
+        if content['payload']['sell_currency'] == "Algorand":
             #Your code here
             algo_sk, algo_pk = get_algo_keys()
             return jsonify( algo_pk )
