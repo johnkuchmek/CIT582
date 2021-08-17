@@ -107,11 +107,9 @@ def get_eth_keys(filename = "eth_mnemonic.txt"):
     # the ethereum public/private keys
     w3.eth.account.enable_unaudited_hdwallet_features()
     acct,mnemonic_secret = w3.eth.account.create_with_mnemonic()
-    print("I am here!")
+
     eth_pk = acct.address
     eth_sk = acct.key
-    
-    print(eth_pk)
     
     return eth_sk, eth_pk
   
@@ -168,6 +166,7 @@ def address():
         
         if content['payload']['sell_currency'] == "Ethereum":
             #Your code here
+            print("I am here")
             eth_sk, eth_pk = get_eth_keys()
             return jsonify( eth_pk )
         if content['payload']['sell_currency'] == "Algorand":
