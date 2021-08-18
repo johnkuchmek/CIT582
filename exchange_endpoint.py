@@ -335,6 +335,8 @@ def order_book():
         dic['tx_id'] = d.tx_id
         result.append(dic)
     resultDict = {'data': result}
+    print(resultDict)
+    print(result)
     return resultDict
     #return result
     pass
