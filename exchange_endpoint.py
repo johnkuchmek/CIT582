@@ -335,11 +335,7 @@ def order_book():
         dic['tx_id'] = d.tx_id
         result.append(dic)
     resultDict = {'data': result}
-    print(resultDict)
-    print(result)
-    return jsonify(resultDict)
-    #return result
-    pass
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(port='5002', debug = True)
