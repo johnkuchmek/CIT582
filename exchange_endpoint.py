@@ -337,7 +337,7 @@ def order_book():
     resultDict = {'data': result}
     print(resultDict)
     print(result)
-    return resultDict
+    return jsonify(resultDict)
     #return result
     pass
 
